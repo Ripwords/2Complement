@@ -26,7 +26,9 @@ const update = (i: string, pos: number) => {
     result.value = binSubtract(numbers[0].bin, numbers[1].twos)
     resultHex.value = result.value != '' ? '0x' + parseInt(result.value, 2).toString(16).toUpperCase() : ''
     // add space every 4 values from the back
-    result.value = result.value.split('').reverse().join('').match(/.{1,4}/g).join(' ').split('').reverse().join('')
+    if (result.value.split('').length > 1) {
+      result.value = result.value.split('').reverse().join('').match(/.{1,4}/g).join(' ').split('').reverse().join('')
+    }
 
     if (resultHex.value.length > 4) {
       digitCarry.value = true
