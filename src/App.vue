@@ -56,6 +56,7 @@ const update = (i: string, pos: number) => {
 <template>
   <n-config-provider :theme="darkTheme">
     <n-global-style />
+    <ReloadPrompt />
     <div class="flex justify-center">
       <div class="w-[80%]">
         <div class="flex justify-center mt-4">
