@@ -21,8 +21,8 @@ const close = async () => {
       <span v-if="offlineReady">App ready to work offline</span>
       <span v-else>New content available, click on reload button to update.</span>
     </div>
-    <ion-button size="small" v-if="needRefresh" @click="updateServiceWorker()">Reload</ion-button>
-    <ion-button size="small" @click="close">Close</ion-button>
+    <n-button size="small" v-if="needRefresh" @click="updateServiceWorker()">Reload</n-button>
+    <n-button size="small" @click="close">Close</n-button>
   </div>
 </template>
 
