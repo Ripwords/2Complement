@@ -2,6 +2,8 @@
 import { twoComplement, binSubtract } from './functions'
 import { darkTheme } from 'naive-ui'
 
+let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches
+console.log(isMobile)
 const numbers = [
   {
     bin: '',
@@ -52,46 +54,46 @@ const update = (i: string, pos: number) => {
 </script>
 
 <template>
-<n-config-provider :theme="darkTheme">
-  <n-global-style />
-  <div class="flex justify-center">
-    <div class="w-[80%]">
-      <div class="flex justify-center mt-4">
-        <n-h1>2's Complement</n-h1>
-        Subtraction
+  <n-config-provider :theme="darkTheme">
+    <n-global-style />
+    <div class="flex justify-center">
+      <div class="w-[80%]">
+        <div class="flex justify-center mt-4">
+          <n-h1>2's Complement</n-h1>
+          Subtraction
+        </div>
       </div>
     </div>
-  </div>
-  <div class="flex justify-center mt-[-20px]">
-    <div v-for="i in 2" :key="i">
-      <InputContainer
-        :num="i" 
-        @output="update($event, i)"
-      />
+    <div class="mt-[-20px]" :class="{
+    'flex': !isMobile,
+    'justify-center': !isMobile
+  }">
+      <div v-for="i in 2" :key="i">
+        <InputContainer :num="i" @output="update($event, i)" />
+      </div>
     </div>
-  </div>
-  <div class="flex justify-center">
-    <div class="w-[80%] mb-5 mt-[-2px]">
-      <n-card v-show="result">
-        <template #header>
-          Result 
-          <n-tag v-show="digitCarry" type="info">
-            Digit Carry
-          </n-tag>
-          <n-tag v-show="negativeValue" type="error">
-            Negative
-          </n-tag>
-        </template>
-        <n-card title="Binary">
-          <p>{{ result }}</p>
+    <div class="flex justify-center">
+      <div class="w-[80%] mb-5 mt-[-2px]">
+        <n-card v-show="result">
+          <template #header>
+            Result
+            <n-tag v-show="digitCarry" type="info">
+              Digit Carry
+            </n-tag>
+            <n-tag v-show="negativeValue" type="error">
+              Negative
+            </n-tag>
+          </template>
+          <n-card title="Binary">
+            <p>{{ result }}</p>
+          </n-card>
+          <n-card title="Hexadecimal">
+            <p>{{ resultHex }}</p>
+          </n-card>
         </n-card>
-        <n-card title="Hexadecimal">
-          <p>{{ resultHex }}</p>
-        </n-card>
-      </n-card>
+      </div>
     </div>
-  </div>
-</n-config-provider>
+  </n-config-provider>
 </template>
 
 <style>
